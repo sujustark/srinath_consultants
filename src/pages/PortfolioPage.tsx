@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { ProjectItem, VERIFIED_PROJECTS } from '@/data/siteData';
 import { useLanguage } from '@/context/LanguageContext';
 import { SeoHead } from '@/components/SeoHead';
@@ -64,27 +64,26 @@ export const PortfolioPage: React.FC = () => {
         path="/portfolio"
       />
 
-      <section className="bg-forest-deep text-white arch-grid-dark py-14 lg:py-20">
-        <div className="mx-auto max-w-[86rem] px-5 lg:px-8">
-          <span className="font-mono text-xs uppercase tracking-widest text-brand-glow font-semibold">
+      <section className="bg-forest text-white py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-glow">
             {t('portfolio.eyebrow')}
-          </span>
-          <h1 className="mt-3 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white max-w-3xl leading-[1.06]">
+          </p>
+          <h1 className="mt-2 font-display text-4xl sm:text-5xl font-extrabold text-white max-w-3xl leading-tight">
             {t('portfolio.title')}
           </h1>
-          <p className="mt-5 max-w-2xl text-base text-ivory/75 leading-relaxed">
+          <p className="mt-4 max-w-2xl text-base text-white/80 leading-relaxed">
             {t('portfolio.subtitle')}
           </p>
 
-          {/* Filter & Search Bar */}
-          <div className="mt-10 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-6 border-t border-white/15">
+          <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-6 border-t border-white/15">
             <div className="flex flex-wrap gap-2">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   type="button"
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  className={`px-4 py-2 rounded-md text-xs font-semibold transition-colors ${
                     activeCategory === cat
                       ? 'bg-brand text-white'
                       : 'bg-white/10 text-white hover:bg-white/20'
@@ -96,13 +95,13 @@ export const PortfolioPage: React.FC = () => {
             </div>
 
             <div className="relative w-full md:w-80">
-              <Search className="h-4 w-4 text-ivory/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="h-4 w-4 text-white/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t('portfolio.search')}
-                className="w-full rounded-lg bg-white/10 border border-white/15 pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-ivory/50 outline-none focus:border-brand-glow"
+                className="w-full rounded-md bg-white/10 border border-white/20 pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/55 outline-none focus:border-brand-glow"
               />
             </div>
           </div>
@@ -110,37 +109,29 @@ export const PortfolioPage: React.FC = () => {
       </section>
 
       <section className="py-16 lg:py-24 bg-ivory border-b border-sage-border">
-        <div className="mx-auto max-w-[86rem] px-5 lg:px-8">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
           {filtered.length === 0 ? (
             <p className="text-center py-16 text-ink-muted">{t('portfolio.noMatch')}</p>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((project) => (
                 <article
                   key={project.id}
-                  className="group relative rounded-2xl overflow-hidden border border-sage-border bg-white shadow-elevated"
+                  className="group rounded-lg bg-white border border-sage-border overflow-hidden hover:shadow-elevated transition-shadow"
                 >
-                  <div className="relative h-72 overflow-hidden">
+                  <div className="h-60 overflow-hidden bg-ivory">
                     <img
                       src={project.img}
                       alt={L(project.title)}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/20 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="rounded-full bg-white/95 backdrop-blur-sm px-3 py-1 text-[11px] font-mono font-semibold text-forest">
-                        {project.authority}
-                      </span>
-                    </div>
-                    <div className="absolute inset-x-0 bottom-0 p-6">
-                      <p className="font-mono text-[11px] uppercase tracking-widest text-brand-glow">
-                        {L(project.tag)}
-                      </p>
-                      <h2 className="font-display text-2xl font-bold text-white mt-1">
-                        {L(project.title)}
-                      </h2>
-                    </div>
+                  </div>
+                  <div className="p-5">
+                    <p className="text-xs font-semibold text-brand">{L(project.tag)}</p>
+                    <h2 className="font-display text-xl font-bold text-forest mt-1">
+                      {L(project.title)}
+                    </h2>
                   </div>
                 </article>
               ))}
@@ -150,9 +141,9 @@ export const PortfolioPage: React.FC = () => {
       </section>
 
       <section className="py-16 bg-white">
-        <div className="mx-auto max-w-[86rem] px-5 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
-            <h2 className="font-display text-3xl font-bold text-forest">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-forest">
               Ready to start your building approval?
             </h2>
             <p className="text-sm text-ink-muted mt-1">
@@ -161,10 +152,9 @@ export const PortfolioPage: React.FC = () => {
           </div>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-lg bg-brand hover:bg-forest text-white px-6 py-3.5 text-xs font-semibold uppercase tracking-widest transition-colors shrink-0"
+            className="inline-flex items-center justify-center rounded-md bg-brand hover:bg-brand-hover text-white px-6 py-3.5 text-sm font-semibold transition-colors shrink-0"
           >
-            <span>{t('cta.freeConsult')}</span>
-            <ArrowUpRight className="h-4 w-4" />
+            {t('cta.freeConsult')}
           </Link>
         </div>
       </section>
