@@ -33,6 +33,7 @@ export const HomePage: React.FC = () => {
   const { settings } = useSiteSettings();
   const [projects, setProjects] = useState<ProjectItem[]>(VERIFIED_PROJECTS);
   const [heroIdx, setHeroIdx] = useState(3); // Default to OMR High-Rise Tower
+  const [heroPaused, setHeroPaused] = useState(false);
   const [activeServiceIdx, setActiveServiceIdx] = useState(0);
   const [portfolioFilter, setPortfolioFilter] = useState('All');
   const [openFaq, setOpenFaq] = useState<number>(0);
@@ -63,6 +64,15 @@ export const HomePage: React.FC = () => {
         // Keep verified fallback projects
       });
   }, []);
+
+  const heroCount = Math.min(projects.length, 5);
+  useEffect(() => {
+    if (heroPaused || heroCount <= 1) return;
+    const timer = window.setInterval(() => {
+      setHeroIdx((prev) => (prev + 1) % heroCount);
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, [heroPaused, heroCount]);
 
   const heroProject = projects[heroIdx] || projects[0];
   const activeService = SERVICES_LIST[activeServiceIdx] || SERVICES_LIST[0];
@@ -171,7 +181,11 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Interactive Real Estate Showcase Card */}
-            <div className="lg:col-span-6">
+            <div
+              className="lg:col-span-6"
+              onMouseEnter={() => setHeroPaused(true)}
+              onMouseLeave={() => setHeroPaused(false)}
+            >
               <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-forest shadow-2xl">
                 <div className="relative h-[380px] sm:h-[460px] overflow-hidden">
                   <img
