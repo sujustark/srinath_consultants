@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, Loader2 } from 'lucide-react';
+import { CheckCircle2, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { SERVICES_LIST } from '@/data/servicesData';
 import { pb } from '@/lib/pb';
@@ -9,7 +9,7 @@ interface EnquiryFormProps {
 }
 
 const inputClasses =
-  'w-full rounded-lg bg-ivory/80 border border-sage-border px-4 py-3.5 text-sm text-ink placeholder:text-ink-subtle outline-none transition-all focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15';
+  'w-full rounded-md bg-white border border-sage-border px-4 py-3 text-sm text-ink placeholder:text-ink-subtle outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/15';
 
 export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultService = '' }) => {
   const { t, L } = useLanguage();
@@ -57,14 +57,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultService = '' })
 
   if (status === 'done') {
     return (
-      <div className="rounded-2xl bg-white border border-sage-border shadow-architectural p-10 text-center">
-        <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-brand-light text-brand">
-          <CheckCircle2 className="h-8 w-8" />
+      <div className="rounded-xl bg-white border border-sage-border shadow-elevated p-10 text-center">
+        <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-brand-light text-brand">
+          <CheckCircle2 className="h-7 w-7" />
         </div>
-        <h3 className="mt-5 font-display text-3xl font-bold text-forest">
+        <h3 className="mt-4 font-display text-2xl font-bold text-forest">
           {t('form.thankYou')}
         </h3>
-        <p className="mt-3 text-sm text-ink-muted max-w-md mx-auto leading-relaxed">
+        <p className="mt-2 text-sm text-ink-muted max-w-md mx-auto leading-relaxed">
           {t('form.received')}
         </p>
         <button
@@ -80,7 +80,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultService = '' })
             });
             setStatus('idle');
           }}
-          className="mt-6 text-xs font-mono uppercase tracking-widest text-brand hover:underline"
+          className="mt-6 text-sm font-semibold text-brand hover:underline"
         >
           Submit another enquiry
         </button>
@@ -92,16 +92,10 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultService = '' })
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl bg-white border border-sage-border shadow-architectural p-7 sm:p-10"
+      className="rounded-xl bg-white border border-sage-border shadow-elevated p-6 sm:p-8"
     >
-      <div className="border-b border-ivory-deep pb-5 mb-6">
-        <span className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-brand">
-          <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-          Real Estate &amp; Approval Desk
-        </span>
-        <h3 className="font-display text-2xl sm:text-3xl font-bold text-forest mt-1.5">
-          {t('form.title')}
-        </h3>
+      <div className="mb-6">
+        <h3 className="font-display text-2xl font-bold text-forest">{t('form.title')}</h3>
         <p className="text-sm text-ink-muted mt-1">{t('form.subtitle')}</p>
       </div>
 
@@ -172,7 +166,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultService = '' })
         {errorMsg && (
           <p
             role="alert"
-            className="rounded-lg text-xs font-medium text-crimson bg-crimson-soft px-4 py-3 border border-crimson/20"
+            className="rounded-md text-xs font-medium text-crimson bg-crimson-soft px-3.5 py-2.5 border border-crimson/20"
           >
             {errorMsg}
           </p>
@@ -181,7 +175,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultService = '' })
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full rounded-lg inline-flex items-center justify-center gap-2 bg-brand hover:bg-forest disabled:opacity-60 text-white px-6 py-4 text-xs font-semibold uppercase tracking-widest shadow-sm transition-all"
+          className="w-full rounded-md inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-hover disabled:opacity-60 text-white px-6 py-3.5 text-sm font-semibold transition-colors"
         >
           {status === 'loading' ? (
             <>
@@ -189,16 +183,11 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultService = '' })
               <span>{t('form.sending')}</span>
             </>
           ) : (
-            <>
-              <span>{t('form.submit')}</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </>
+            <span>{t('form.submit')}</span>
           )}
         </button>
 
-        <p className="text-[11px] font-mono text-ink-subtle text-center pt-1">
-          {t('form.disclaimer')}
-        </p>
+        <p className="text-xs text-ink-subtle text-center pt-1">{t('form.disclaimer')}</p>
       </div>
     </form>
   );

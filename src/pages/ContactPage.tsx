@@ -18,15 +18,15 @@ export const ContactPage: React.FC = () => {
         path="/contact"
       />
 
-      <section className="bg-forest-deep text-white arch-grid-dark py-14 lg:py-20">
-        <div className="mx-auto max-w-[86rem] px-5 lg:px-8">
-          <span className="font-mono text-xs uppercase tracking-widest text-brand-glow font-semibold">
+      <section className="bg-forest text-white py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-glow">
             {t('nav.contact')}
-          </span>
-          <h1 className="mt-3 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white max-w-3xl leading-[1.06]">
+          </p>
+          <h1 className="mt-2 font-display text-4xl sm:text-5xl font-extrabold text-white max-w-3xl leading-tight">
             Speak with our consultancy desk.
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-ivory/75 leading-relaxed">
+          <p className="mt-4 max-w-2xl text-base text-white/80 leading-relaxed">
             Visit our office in Madhanandhapuram, call us directly, or submit your project
             requirements below for a prompt consultation.
           </p>
@@ -34,13 +34,13 @@ export const ContactPage: React.FC = () => {
       </section>
 
       <section className="py-16 lg:py-24 bg-ivory">
-        <div className="mx-auto max-w-[86rem] px-5 lg:px-8 grid lg:grid-cols-12 gap-12 items-start">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8 grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5 space-y-6">
-            <div className="rounded-2xl bg-white border border-sage-border shadow-architectural p-7 space-y-6">
+            <div className="rounded-lg bg-white border border-sage-border shadow-elevated p-7 space-y-6">
               <div className="flex items-start gap-4">
                 <Phone className="h-5 w-5 text-brand shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-ink-subtle">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink-subtle">
                     Telephone &amp; WhatsApp
                   </p>
                   <a
@@ -55,7 +55,7 @@ export const ContactPage: React.FC = () => {
               <div className="flex items-start gap-4 pt-5 border-t border-ivory-deep">
                 <Mail className="h-5 w-5 text-brand shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-ink-subtle">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink-subtle">
                     Email
                   </p>
                   <a
@@ -70,7 +70,7 @@ export const ContactPage: React.FC = () => {
               <div className="flex items-start gap-4 pt-5 border-t border-ivory-deep">
                 <MapPin className="h-5 w-5 text-brand shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-ink-subtle">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink-subtle">
                     Office Address
                   </p>
                   <p className="text-sm text-ink-muted leading-relaxed mt-1">{settings.address}</p>
@@ -89,7 +89,7 @@ export const ContactPage: React.FC = () => {
               <div className="flex items-start gap-4 pt-5 border-t border-ivory-deep">
                 <Clock className="h-5 w-5 text-brand shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-ink-subtle">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink-subtle">
                     Consultation Hours
                   </p>
                   <p className="text-sm text-forest font-semibold mt-1">{CONTACT_INFO.hours}</p>
